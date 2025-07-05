@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>HELIOS Session Tracker</title></head>
+<body><h2>Tracking en cours…</h2>
+<script>
+(async () => {
+  const url = "https://script.google.com/macros/s/AKfycbwphP0kMXPnLWXPVMPNR5_p5TWKSuwrF1mI-yE-A2PnCl70_0K_mrXHfDEwTtiri9UCvg/exec";
+  const payload = {
+    timestamp: new Date().toISOString(),
+    session_id: `HL-${new Date().toISOString().slice(2,10).replace(/-/g,'')}-${new Date().toTimeString().slice(0,8).replace(/:/g,'')}-${Math.random().toString(36).substring(2,6).toUpperCase()}`,
+    user_agent: navigator.userAgent,
+    referrer: document.referrer || 'direct'
+  };
+  await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: { "Content-Type": "application/json" }
+  });
+})();
+</script>
+</body>
+</html>
